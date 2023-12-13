@@ -2,9 +2,19 @@
 
 @section('conteudo')
 
-<h1>Cadastro de clientes</h1>
+<h1>Usuário</h1>
 
 <section class="d-flex justify-content-center">
+
+
+    <p>
+
+    {{$usuario->name}}
+
+    {{$usuario->email}}
+
+    </p>
+
 
 </section>
 

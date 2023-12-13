@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Servico;
 use Illuminate\Http\Request;
 
 class ServicoController extends Controller
@@ -11,7 +12,8 @@ class ServicoController extends Controller
      */
     public function index()
     {
-        //
+        $vetor = \App\Models\Servico::all();
+        return view('servicos.listar',compact('vetor'));
     }
 
     /**
@@ -19,7 +21,7 @@ class ServicoController extends Controller
      */
     public function create()
     {
-        //
+        return view('servicos.salvar');
     }
 
     /**
@@ -35,7 +37,8 @@ class ServicoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $servico = Servico::find($id);
+        return view('servicos.visualizar',compact('servico'));
     }
 
     /**
@@ -43,7 +46,8 @@ class ServicoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $servico = Servico::find($id);
+        return view('servicos.atualizar',compact('servico'));
     }
 
     /**

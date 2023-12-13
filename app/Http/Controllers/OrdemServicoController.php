@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OrdemServico;
 use Illuminate\Http\Request;
 
 class OrdemServicoController extends Controller
@@ -11,7 +12,8 @@ class OrdemServicoController extends Controller
      */
     public function index()
     {
-        //
+        $vetor = \App\Models\OrdemServico::all();
+        return view('os.listar',compact('vetor'));
     }
 
     /**
@@ -19,7 +21,8 @@ class OrdemServicoController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('os.salvar');
     }
 
     /**
@@ -35,7 +38,8 @@ class OrdemServicoController extends Controller
      */
     public function show(string $id)
     {
-        //
+       // $ordem_servico = OrdemServico::find($id);
+        //return view('os.visualizar',compact('ordem_servico'));
     }
 
     /**

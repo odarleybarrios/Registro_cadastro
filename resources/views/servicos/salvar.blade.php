@@ -6,8 +6,8 @@
 
 <form action="{{route('servicos.store')}}" method="POST">
 @csrf
-<input type="text" placeholder="Descrição" name="descricao">
-<input type="text" placeholder="Defeito" name="defeito">
+<input type="date" placeholder="Data de entrada" name="data_entrada">
+<input type="date" placeholder="Data de saída" name="data_saida">
 <input type="number" step="0.01" placeholder="Valor" name="valor">
 <button type="submit">Cadastrar</button>
 </form>

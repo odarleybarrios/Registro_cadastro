@@ -11,12 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('defeitos', function (Blueprint $table) {
+        Schema::create('ordem_servicos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('descricao');
+            $table->string('defeito');
+            $table->float('valor');
             $table->unsignedBigInteger('aparelhos_id');
             $table->foreign('aparelhos_id')->references('id')->on('aparelhos');
+            $table->unsignedBigInteger('servico_id');
+            $table->foreign('servico_id')->references('id')->on('servicos');
+
+
         });
     }
 
@@ -25,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('defeitos');
+        Schema::dropIfExists('ordem_servicos');
     }
 };

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aparelho;
 use Illuminate\Http\Request;
 
 class AparelhoController extends Controller
@@ -11,8 +12,8 @@ class AparelhoController extends Controller
      */
     public function index()
     {
-        $vetor = App\Models\Aparelho::all();
-     return view('aparelhos.index',compact('vetor'));
+        $vetor = \App\Models\Aparelho::all();
+     return view('aparelhos.listar',compact('vetor'));
     }
 
     /**
@@ -20,7 +21,7 @@ class AparelhoController extends Controller
      */
     public function create()
     {
-        //
+        return view('aparelhos.salvar');
     }
 
     /**
@@ -36,7 +37,8 @@ class AparelhoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $aparelho=Aparelho::find($id);
+        return view('aparelhos.visualizar',compact('aparelho'));
     }
 
     /**
@@ -44,7 +46,8 @@ class AparelhoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $aparelho=Aparelho::find($id);
+        return view('aparelhos.atualizar',compact('aparelho'));
     }
 
     /**

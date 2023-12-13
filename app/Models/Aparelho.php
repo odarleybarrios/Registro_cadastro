@@ -9,4 +9,8 @@ class Aparelho extends Model
 {
     use HasFactory;
     protected $table = 'aparelhos';
+    public function ordemServico()
+    {
+        return $this->belongsTo(OrdemServico::class, 'ordem_servico_id', 'id');
+    }
 }

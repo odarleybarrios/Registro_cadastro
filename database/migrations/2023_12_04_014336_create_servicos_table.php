@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ordem_servicos', function (Blueprint $table) {
+        Schema::create('servicos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->unsignedBigInteger('aparelhos_id');
-            $table->foreign('aparelhos_id')->references('id')->on('aparelhos');
+            $table->date('data_entrada');
+            $table->date('data_saida');
+            $table->float('valor_servico');
             $table->unsignedBigInteger('clientes_id');
             $table->foreign('clientes_id')->references('id')->on('clientes');
-            
+
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ordem_servicos');
+        Schema::dropIfExists('servicos');
     }
 };

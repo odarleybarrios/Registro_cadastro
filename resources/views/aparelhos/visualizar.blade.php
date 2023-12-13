@@ -2,10 +2,19 @@
 
 @section('conteudo')
 
-<h1>Cadastro de clientes</h1>
+<h1>Aparelhos</h1>
 
 <section class="d-flex justify-content-center">
 
+
+    <p>
+        {{$aparelho->tipo}}
+
+        {{$aparelho->marca_modelo}}
+
+    </p>
+
+    
 </section>
 
 
