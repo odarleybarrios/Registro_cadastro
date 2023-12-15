@@ -7,7 +7,7 @@
 <a href="{{route('clientes.create')}}" class="btn btn-primary">Cadastrar</a>
 
 <section class="d-flex justify-content-center">
-    <table>
+    <table class="table">
     @foreach ($vetor as $cliente)
 
      <tr>

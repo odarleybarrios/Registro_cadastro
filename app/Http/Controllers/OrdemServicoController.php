@@ -37,8 +37,17 @@ class OrdemServicoController extends Controller
         $ordem_servico->descricao = $request->descricao;
         $ordem_servico->defeito = $request->defeito;
         $ordem_servico->valor = $request->valor;
+        $ordem_servico->aparelhos_id = $request->aparelho_id;
+        $ordem_servico->servico_id = $request->servico_id;
         $ordem_servico->save();
         return redirect()->route('ordem_servicos.index');
+    }
+
+
+    public function servico($id)
+    {
+        $aparelhos=Aparelho::all();
+        return view('os.salvar',compact('aparelhos','id'));
     }
 
     /**
@@ -70,6 +79,8 @@ class OrdemServicoController extends Controller
         $ordem_servico->descricao = $request->descricao;
         $ordem_servico->defeito = $request->defeito;
         $ordem_servico->valor = $request->valor;
+        $ordem_servico->aparelhos_id = $request->aparelho_id;
+        $ordem_servico->servico_id = $request->servico_id;
         $ordem_servico->save();
         return redirect()->route('ordem_servicos.index');
     }

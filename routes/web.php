@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/aparelho', [App\Http\Controllers\AparelhoController::class, 'index'])->name('aparelho');
+Route::get('/ordem_servicos/servico/{id}', [App\Http\Controllers\OrdemServicoController::class, 'servico'])->name('ordem_servicos.servico');
 Route::resources([
     'aparelhos' => App\Http\Controllers\AparelhoController::class,
     'servicos' => App\Http\Controllers\ServicoController::class,

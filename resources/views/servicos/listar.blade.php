@@ -7,7 +7,7 @@
 <a href="{{route('servicos.create')}}" class="btn btn-primary">Cadastrar</a>
 
 <section class="d-flex justify-content-center">
-    <table>
+    <table class="table">
     @foreach ($vetor as $servico)
        <tr>
 

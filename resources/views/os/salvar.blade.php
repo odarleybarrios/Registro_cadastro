@@ -2,9 +2,9 @@
 
 @section('conteudo')
 
-<h1>Novo Serviço</h1>
+<h1>Nova ordem de serviço</h1>
 
-<form action="{{route('servicos.store')}}" method="POST">
+<form action="{{route('ordem_servicos.store')}}" method="POST">
 @csrf
 <input type="text" placeholder="Descrição" name="descricao">
 <input type="text" placeholder="Defeito" name="defeito">
@@ -14,11 +14,7 @@
  <option value="{{$aparelho->id}}">{{$aparelho->tipo}}</option>
     @endforeach
 </select>
-<select name="cliente_id">
-    @foreach ($servicos as $servico)
- <option value="{{$servico->id}}">{{$servico->id}} - {{$servico->cliente->nome}}</option>
-    @endforeach
-</select>
+<input type="hidden" name="servico_id" value="{{$id}}">
 <button type="submit">Cadastrar</button>
 </form>
 
