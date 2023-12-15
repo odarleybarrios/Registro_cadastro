@@ -28,7 +28,12 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-
+        $cliente = new Cliente();
+        $cliente->nome = $request->nome;
+        $cliente->endereco = $request->endereco;
+        $cliente->telefone = $request->telefone;
+        $cliente->save();
+        return redirect()->route('clientes.index');
     }
 
     /**
@@ -54,7 +59,12 @@ class ClienteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $cliente=Cliente::find($id);
+        $cliente->nome = $request->nome;
+        $cliente->endereco = $request->endereco;
+        $cliente->telefone = $request->telefone;
+        $cliente->save();
+        return redirect()->route('clientes.index');
     }
 
     /**
@@ -62,6 +72,7 @@ class ClienteController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Cliente::destroy($id);
+        return redirect()->route('clientes.index');
     }  //
 }

@@ -2,9 +2,9 @@
 
 @section('conteudo')
 
-<h1>Novo Serviço</h1>
+<h1>Novo Cliente</h1>
 
-<form action="{{route('servicos.store')}}" method="POST">
+<form action="{{route('clientes.store')}}" method="POST">
 @csrf
 <input type="text" placeholder="Nome" name="nome">
 <input type="text" placeholder="Endereço" name="endereco">

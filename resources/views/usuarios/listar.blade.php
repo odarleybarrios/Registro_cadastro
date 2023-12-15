@@ -7,15 +7,25 @@
 <a href="{{route('usuarios.create')}}" class="btn btn-primary">Cadastrar</a>
 
 <section class="d-flex justify-content-center">
+    <table>
     @foreach ($vetor as $usuario)
 
-    <p>
-        {{$usuario->name}}
+   <tr>
+       <td>{{$usuario->name}}</td>
 
-        {{$usuario->email}}
+        <td>{{$usuario->email}}</td>
 
-    </p>
+        <td><a href="{{route('usuarios.show',$usuario)}}" class="btn btn-secondary">Visualizar</a></td>
+        <td><a href="{{route('usuarios.edit',$usuario)}}" class="btn btn-warning">Editar</a></td>
+        <td>
+            <form action="{{route('usuarios.destroy', $usuario)}}" method="POST">
+                @csrf @method('DELETE')
+                <button type="submit" class="btn btn-danger">Deletar</button>
+            </form>
+        </td>
+    </tr>
 
     @endforeach
+</table>
 </section>
 @endsection

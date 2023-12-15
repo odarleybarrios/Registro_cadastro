@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use App\Models\Servico;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class ServicoController extends Controller
      */
     public function create()
     {
-        return view('servicos.salvar');
+        $clientes = Cliente::all();
+        return view('servicos.salvar',compact('clientes'));
     }
 
     /**
@@ -29,7 +31,13 @@ class ServicoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $servico = new Servico();
+        $servico->data_entrada = $request->data_entrada;
+        $servico->data_saida = $request->data_saida;
+        $servico->valor_servico= $request->valor;
+        $servico->clientes_id= $request->cliente_id;
+        $servico->save();
+        return redirect()->route('servicos.index');
     }
 
     /**
@@ -47,7 +55,8 @@ class ServicoController extends Controller
     public function edit(string $id)
     {
         $servico = Servico::find($id);
-        return view('servicos.atualizar',compact('servico'));
+        $clientes = Cliente::all();
+        return view('servicos.atualizar',compact('servico','clientes'));
     }
 
     /**
@@ -55,7 +64,13 @@ class ServicoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $servico = Servico::find($id);
+        $servico->data_entrada = $request->data_entrada;
+        $servico->data_saida = $request->data_saida;
+        $servico->valor_servico= $request->valor;
+        $servico->clientes_id= $request->cliente_id;
+        $servico->save();
+        return redirect()->route('servicos.index');
     }
 
     /**
@@ -63,6 +78,7 @@ class ServicoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
-    }//
+        Servico::destroy($id);
+        return redirect()->route('servicos.index');
+    }
 }

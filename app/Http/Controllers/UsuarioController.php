@@ -29,7 +29,12 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuario = new Usuario();
+        $usuario->name= $request->nome;
+        $usuario->email= $request->email;
+        $usuario->password= $request->senha;
+        $usuario->save();
+        return redirect()->route('usuarios.index');
     }
 
     /**
@@ -38,7 +43,7 @@ class UsuarioController extends Controller
     public function show(string $id)
     {
         $usuario = Usuario::find($id);
-        return view('usuario.visualizar',compact('usuario'));
+        return view('usuarios.visualizar',compact('usuario'));
     }
 
     /**
@@ -55,7 +60,12 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $usuario = Usuario::find($id);
+        $usuario->name= $request->nome;
+        $usuario->email= $request->email;
+        $usuario->password= $request->senha;
+        $usuario->save();
+        return redirect()->route('usuarios.index');
     }
 
     /**
@@ -63,6 +73,7 @@ class UsuarioController extends Controller
      */
     public function destroy(string $id)
     {
-        //
-    }//
+        Usuario::destroy($id);
+        return redirect()->route('usuarios.index');
+    }
 }

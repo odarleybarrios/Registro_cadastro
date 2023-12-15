@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aparelho;
 use App\Models\OrdemServico;
+use App\Models\Servico;
 use Illuminate\Http\Request;
 
 class OrdemServicoController extends Controller
@@ -21,8 +23,9 @@ class OrdemServicoController extends Controller
      */
     public function create()
     {
-
-        return view('os.salvar');
+        $servicos=Servico::all();
+        $aparelhos=Aparelho::all();
+        return view('os.salvar',compact('servicos','aparelhos'));
     }
 
     /**
@@ -30,7 +33,12 @@ class OrdemServicoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ordem_servico = new OrdemServico();
+        $ordem_servico->descricao = $request->descricao;
+        $ordem_servico->defeito = $request->defeito;
+        $ordem_servico->valor = $request->valor;
+        $ordem_servico->save();
+        return redirect()->route('ordem_servicos.index');
     }
 
     /**
@@ -38,8 +46,8 @@ class OrdemServicoController extends Controller
      */
     public function show(string $id)
     {
-       // $ordem_servico = OrdemServico::find($id);
-        //return view('os.visualizar',compact('ordem_servico'));
+       $ordem_servico = OrdemServico::find($id);
+        return view('os.visualizar',compact('ordem_servico'));
     }
 
     /**
@@ -47,7 +55,10 @@ class OrdemServicoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $ordem_servico = OrdemServico::find($id);
+        $servicos=Servico::all();
+        $aparelhos=Aparelho::all();
+        return view('os.atualizar',compact('servicos','aparelhos','ordem_servico'));
     }
 
     /**
@@ -55,7 +66,12 @@ class OrdemServicoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $ordem_servico = OrdemServico::find($id);
+        $ordem_servico->descricao = $request->descricao;
+        $ordem_servico->defeito = $request->defeito;
+        $ordem_servico->valor = $request->valor;
+        $ordem_servico->save();
+        return redirect()->route('ordem_servicos.index');
     }
 
     /**
@@ -63,6 +79,7 @@ class OrdemServicoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
-    }//
+        OrdemServico::destroy($id);
+        return redirect()->route('ordem_servicos.index');
+    }
 }

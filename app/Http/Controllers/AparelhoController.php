@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Cliente;
 use App\Models\Aparelho;
 use Illuminate\Http\Request;
 
@@ -21,7 +21,8 @@ class AparelhoController extends Controller
      */
     public function create()
     {
-        return view('aparelhos.salvar');
+        $clientes = Cliente::all();
+        return view('aparelhos.salvar',compact('clientes'));
     }
 
     /**
@@ -29,7 +30,12 @@ class AparelhoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $aparelho = new Aparelho();
+        $aparelho->tipo = $request->tipo;
+        $aparelho->marca_modelo = $request->marca_modelo;
+        $aparelho->clientes_id = $request->cliente_id;
+        $aparelho->save();
+        return redirect()->route('aparelhos.index');
     }
 
     /**
@@ -47,7 +53,8 @@ class AparelhoController extends Controller
     public function edit(string $id)
     {
         $aparelho=Aparelho::find($id);
-        return view('aparelhos.atualizar',compact('aparelho'));
+        $clientes = Cliente::all();
+        return view('aparelhos.atualizar',compact('aparelho','clientes'));
     }
 
     /**
@@ -55,7 +62,12 @@ class AparelhoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $aparelho=Aparelho::find($id);
+        $aparelho->tipo = $request->tipo;
+        $aparelho->marca_modelo = $request->marca_modelo;
+        $aparelho->clientes_id = $request->cliente_id;
+        $aparelho->save();
+        return redirect()->route('aparelhos.index');
     }
 
     /**
@@ -63,6 +75,8 @@ class AparelhoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Aparelho::destroy($id);
+        return redirect()->route('aparelhos.index');
+
     } //
 }
